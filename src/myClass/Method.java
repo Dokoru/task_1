@@ -8,7 +8,9 @@ public class Method {
     private int numbOfArg;
 
     public Method(String accessModifier, String returnFieldType, String name) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -27,7 +29,9 @@ public class Method {
     }
 
     public void setAccessModifier(String accessModifier) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -61,16 +65,17 @@ public class Method {
         argumentMap.values().remove(argument);
     }
 
-    protected StringBuffer toStringBuffer() {
-        StringBuffer stringBuffer = new StringBuffer(accessModifier).append(' ').append(returnFieldType).
-                append(' ').append(name).append(" (");
+    public String toString() {
+        String string = accessModifier + ' ' + returnFieldType + ' ' + name + " (";
         for (Integer key : argumentMap.keySet()) {
-            stringBuffer.append(argumentMap.get(key).toStringBuffer()).append(", ");
+            string = string + argumentMap.get(key).toStringBuffer() + ", ";
         }
         if (numbOfArg > 1) {
-            stringBuffer.delete(stringBuffer.length() - 2, stringBuffer.length());
+            StringBuffer sb = new StringBuffer(string);
+            sb.delete(sb.length() - 2, sb.length());
+            string = sb.toString();
         }
-        stringBuffer.append(')').append(" {\n\t}");
-        return stringBuffer;
+        string = string + ')' + " {\n\t}";
+        return string;
     }
 }

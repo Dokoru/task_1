@@ -3,7 +3,7 @@ package myClass;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Test1();
+        Test4();
     }
 
     public static void Test1() throws Exception {
@@ -24,11 +24,11 @@ public class Main {
         c.add(m2);
         c.add(f1);
         c.add(f2);
-        System.out.println(c.toStringBuffer());
+        System.out.println(c.toString());
         c.setAccessModifier("private");
         c.remove(f2);
         c.remove(m1);
-        System.out.println(c.toStringBuffer());
+        System.out.println(c.toString());
     }
 
     public static void Test2() throws Exception {
@@ -53,7 +53,7 @@ public class Main {
         m1.remove(a1);
         c.add(m2);
         m1.add(a2);
-        System.out.println(c.toStringBuffer());
+        System.out.println(c.toString());
     }
 
     public static void Test4() throws Exception {

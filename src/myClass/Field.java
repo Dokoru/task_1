@@ -4,7 +4,9 @@ public class Field {
     private String accessModifier, fieldType, name, value;
 
     public Field(String accessModifier, String fieldType, String name, String value) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -14,7 +16,9 @@ public class Field {
     }
 
     public Field(String accessModifier, String fieldType, String name) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -31,7 +35,9 @@ public class Field {
     }
 
     public void setAccessModifier(String accessModifier) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -57,16 +63,14 @@ public class Field {
         this.value = value;
     }
 
-    protected StringBuffer toStringBuffer() {
-        StringBuffer stringBuffer;
+    public String toString() {
+        String string;
         if (value == null || value.length() == 0) {
-            stringBuffer =  new StringBuffer(accessModifier).append(' ').append(fieldType).append(' ').
-                    append(name).append(";");
+            string = accessModifier + ' ' + fieldType + ' ' + name + ";";
         } else {
-            stringBuffer = new StringBuffer(accessModifier).append(' ').append(fieldType).append(' ').
-                    append(name).append(" = ").append(value).append(";");
+            string = accessModifier + ' ' + fieldType + ' ' + name + " = " + value + ";";
         }
-        return stringBuffer;
+        return string;
     }
 }
 

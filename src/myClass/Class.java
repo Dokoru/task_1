@@ -10,7 +10,9 @@ public class Class {
     private int numbOfFields;
 
     public Class(String accessModifier, String name) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.name = name;
@@ -35,7 +37,9 @@ public class Class {
     }
 
     public void setAccessModifier(String accessModifier) throws Exception {
-        if (!AccessModifier.check(accessModifier)) {
+        try {
+            AccessModifier.valueOf(accessModifier);
+        } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -65,16 +69,16 @@ public class Class {
         fieldMap.values().remove(field);
     }
 
-    public StringBuffer toStringBuffer() {
-        StringBuffer sbClass = new StringBuffer(accessModifier + ' ' + "class" + ' ' + name + " { \n");
+    public String toString() {
+        String string = accessModifier + ' ' + "class" + ' ' + name + " { \n";
         for (Integer key : fieldMap.keySet()) {
-            sbClass.append('\t').append(fieldMap.get(key).toStringBuffer()).append('\n');
+            string = string + '\t' + fieldMap.get(key).toString() + '\n';
         }
         for (Integer key : methodMap.keySet()) {
-            sbClass.append('\t').append(methodMap.get(key).toStringBuffer()).append('\n');
+            string = string + '\t' + methodMap.get(key).toString() + '\n';
         }
-        sbClass.append('}');
-        return sbClass;
+        string = string + '}';
+        return string;
     }
 }
 

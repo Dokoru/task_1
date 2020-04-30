@@ -2,7 +2,6 @@ package myClass;
 
 public class Argument {
     private String fieldType, name;
-    private StringBuffer stringBuffer;
 
     public Argument(String fieldType, String name) {
         this.fieldType = fieldType;

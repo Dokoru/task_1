@@ -12,23 +12,7 @@ public enum AccessModifier {
         name = accessModifier;
     }
 
-    public boolean equals(String accessModifier) {
-        return name.equals(accessModifier);
-    }
-
     public String toString() {
         return this.name;
-    }
-
-    public static boolean check(String accessModifier) {
-        if (accessModifier == null) {
-            return true;
-        }
-        for (AccessModifier accMod : AccessModifier.values()) {
-            if (accMod.equals(accessModifier)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
