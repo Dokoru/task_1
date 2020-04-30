@@ -1,0 +1,71 @@
+1)      Class c = new Class();
+        c.setName("class");
+        c.setAccessModifier("public");
+        Method m1 = new Method("public", "void", "method1");
+        Method m2 = new Method("public", "void", "method2");
+        Argument a1 = new Argument("int", "a1");
+        Argument a2 = new Argument("int", "a2");
+        m1.addArgumentInMap(a1);
+        m1.addArgumentInMap(a2);
+        m2.addArgumentInMap(a1);
+        m2.addArgumentInMap(a2);
+        c.add(m1);
+        c.add(m2);
+        c.add(f1);
+        c.add(f2);
+        System.out.println(c.toStringBuffer());
+        c.setAccessModifier("private");
+        c.remove(f2);
+        c.remove(m1);
+        System.out.println(c.toStringBuffer());
+
+public class class {
+	public int f1 = 1;
+	public int f2;
+	public void method1 (int a1, int a2) {
+	}
+	public void method2 (int a1, int a2) {
+	}
+}
+private class class {
+	public int f1 = 1;
+	public void method2 (int a1, int a2) {
+	}
+}
+
+2)        Class c = new Class("public", "class");
+          Method m = new Method();
+          c.add(m);
+
+Exception in thread "main" java.lang.Exception: NotCorrectMethod
+
+3)      Class c = new Class("", "class");
+        Field f1 = new Field("private", "int", "f1", "1");
+        Field f2 = new Field("protected", "int", "f2");
+        Method m1 = new Method("public", "void", "method1");
+        Method m2 = new Method("", "void", "method2");
+        Argument a1 = new Argument("int", "a1");
+        Argument a2 = new Argument("int", "a2");
+        c.add(f1);
+        c.add(m1);
+        m1.add(a1);
+        m1.add(a1);
+        c.add(f2);
+        m1.remove(a1);
+        c.add(m2);
+        m1.add(a2);
+        System.out.println(c.toStringBuffer());
+
+ class class {
+	private int f1 = 1;
+	protected int f2;
+	public void method1 (int a1, int a2) {
+	}
+	 void method2 () {
+	}
+}
+
+4)      Class c = new Class();
+        c.setAccessModifier("aaa");
+
+Exception in thread "main" java.lang.Exception: WrongAccessModifier
