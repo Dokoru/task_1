@@ -21,7 +21,6 @@ public enum AccessModifier {
         String enumValue = null;
         for(AccessModifier eachValue : values) {
             enumValue = eachValue.toString();
-
             if (enumValue.equalsIgnoreCase(value)) {
                 return eachValue.name();
             }
