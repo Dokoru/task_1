@@ -1,35 +1,37 @@
 package myClass;
 
 public class Argument {
-    private String dataType, name;
+    private String fieldType, name;
     private StringBuffer stringBuffer;
 
-    public Argument(String dataType, String name) {
-        this.dataType = dataType;
+    public Argument(String fieldType, String name) {
+        this.fieldType = fieldType;
         this.name = name;
     }
 
     public Argument() {
-        this.dataType = null;
+        this.fieldType = null;
         this.name = null;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
+    }
+
+    public String getFieldType() {
+        return fieldType;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    private void setStringBuffer() {
-        stringBuffer = new StringBuffer(dataType).append(' ').append(name);
+    public String getName() {
+        return name;
     }
 
-    protected StringBuffer getStringBuffer() {
-        if (stringBuffer == null) {
-            setStringBuffer();
-        }
+    protected StringBuffer toStringBuffer() {
+        StringBuffer stringBuffer = new StringBuffer(fieldType).append(' ').append(name);
         return stringBuffer;
     }
 }

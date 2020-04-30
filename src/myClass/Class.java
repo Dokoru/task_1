@@ -1,9 +1,13 @@
 package myClass;
 
+import java.util.HashMap;
+
 public class Class {
-    private final int sumOtherChar = 10;
     private String accessModifier, name;
-    private StringBuffer stringBuffer;
+    private HashMap<Integer, Method> methodMap;
+    private HashMap<Integer, Field> fieldMap;
+    private int numbOfMethods;
+    private int numbOfFields;
 
     public Class(String accessModifier, String name) throws Exception {
         if (!AccessModifier.check(accessModifier)) {
@@ -11,15 +15,19 @@ public class Class {
         }
         this.name = name;
         this.accessModifier = accessModifier;
+        this.numbOfMethods = 0;
+        this.numbOfFields = 0;
+        this.methodMap = new HashMap<>();
+        this.fieldMap = new HashMap<>();
     }
 
     public Class() {
         this.name = null;
         this.accessModifier = null;
-    }
-
-    private void setStringBuffer() {
-        stringBuffer = new StringBuffer(accessModifier + ' ' + "class" + ' ' + name + " { \n" +'}');
+        this.numbOfMethods = 0;
+        this.numbOfFields = 0;
+        this.methodMap = new HashMap<>();
+        this.fieldMap = new HashMap<>();
     }
 
     public void setName(String newName) {
@@ -33,49 +41,40 @@ public class Class {
         this.accessModifier = accessModifier;
     }
 
-    public StringBuffer create() {
-        return stringBuffer;
-    }
-
-    protected StringBuffer getStringBuffer() {
-        if (stringBuffer == null) {
-            setStringBuffer();
+    protected void add(Method method) throws Exception {
+        if (method.getReturnFieldType() == null || method.getName() == null) {
+            throw new Exception("NotCorrectMethod");
         }
-        return stringBuffer;
+        numbOfMethods++;
+        methodMap.put(numbOfMethods, method);
     }
 
-    private int fieldLength() {
-        return accessModifier.length() + name.length() + sumOtherChar;
+    protected void remove(Method method) {
+        methodMap.values().remove(method);
     }
 
-    public void addMethod(Method method) {
-        getStringBuffer().insert(fieldLength(), "\n\t" + method.getStringBuffer());
-    }
-
-    public void deleteMethod(Method method) throws Exception {
-        StringBuffer sbClass = getStringBuffer();
-        StringBuffer sbMethod = method.getStringBuffer();
-        int pos = sbClass.indexOf(sbMethod.toString(), fieldLength());
-        if (pos == -1) {
-            throw new Exception ("MethodNotInClass");
-        } else {
-            sbClass.delete(pos - 2, pos + sbMethod.length());
+    protected void add(Field field) throws Exception {
+        if (field.getFieldType() == null || field.getName() == null) {
+            throw new Exception("NotCorrectMethod");
         }
+        numbOfFields++;
+        fieldMap.put(numbOfFields, field);
     }
 
-    public void addData(Field field) {
-        getStringBuffer().insert(fieldLength(), "\n\t" + field.getStringBuffer());
+    protected void remove(Field field) {
+        fieldMap.values().remove(field);
     }
 
-    public void deleteData(Field field) throws Exception {
-        StringBuffer sbClass = getStringBuffer();
-        StringBuffer sbField = field.getStringBuffer();
-        int pos = sbClass.indexOf(sbField.toString(), fieldLength());
-        if (pos == -1) {
-            throw new Exception ("DataNotInClass");
-        } else {
-            sbClass.delete(pos - 2, pos + sbField.length());
+    public StringBuffer toStringBuffer() {
+        StringBuffer sbClass = new StringBuffer(accessModifier + ' ' + "class" + ' ' + name + " { \n");
+        for (Integer key : fieldMap.keySet()) {
+            sbClass.append('\t').append(fieldMap.get(key).toStringBuffer()).append('\n');
         }
+        for (Integer key : methodMap.keySet()) {
+            sbClass.append('\t').append(methodMap.get(key).toStringBuffer()).append('\n');
+        }
+        sbClass.append('}');
+        return sbClass;
     }
 }
 

@@ -2,7 +2,6 @@ package myClass;
 
 public class Field {
     private String accessModifier, fieldType, name, value;
-    private StringBuffer stringBuffer;
 
     public Field(String accessModifier, String fieldType, String name, String value) throws Exception {
         if (!AccessModifier.check(accessModifier)) {
@@ -42,27 +41,30 @@ public class Field {
         this.fieldType = fieldType;
     }
 
+    public String getFieldType() {
+        return fieldType;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setValue(String value) {
         this.value = value;
     }
 
-    private void setStringBuffer() {
+    protected StringBuffer toStringBuffer() {
+        StringBuffer stringBuffer;
         if (value == null || value.length() == 0) {
             stringBuffer =  new StringBuffer(accessModifier).append(' ').append(fieldType).append(' ').
                     append(name).append(";");
         } else {
             stringBuffer = new StringBuffer(accessModifier).append(' ').append(fieldType).append(' ').
                     append(name).append(" = ").append(value).append(";");
-        }
-    }
-
-    protected StringBuffer getStringBuffer() {
-        if (stringBuffer == null) {
-            setStringBuffer();
         }
         return stringBuffer;
     }
