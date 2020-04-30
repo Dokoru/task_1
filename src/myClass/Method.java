@@ -3,9 +3,10 @@ package myClass;
 public class Method {
     private String accessModifier, returnDataType, name;
     private StringBuffer stringBuffer;
+    private final int sumOtherChar = 6;
 
     public Method(String accessModifier, String returnDataType, String name) throws Exception {
-        if (!(accessModifier.equals("public") || accessModifier.equals("protected") || accessModifier.equals("private"))) {
+        if (!AccessModifier.check(accessModifier)) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -25,7 +26,7 @@ public class Method {
     }
 
     public void setAccessModifier(String accessModifier) throws Exception {
-        if (!(accessModifier.equals("public") || accessModifier.equals("protected") || accessModifier.equals("private"))) {
+        if (!AccessModifier.check(accessModifier)) {
             throw new Exception("WrongAccessModifier");
         }
         this.accessModifier = accessModifier;
@@ -54,7 +55,7 @@ public class Method {
         StringBuffer sbMethod = getStringBuffer();
         int length = getLengthToArgs();
         StringBuffer sbArg = argument.getStringBuffer();
-        if (sbMethod.length() - 6 == getLengthToArgs()) {
+        if (sbMethod.length() - sumOtherChar == getLengthToArgs()) {
             sbMethod.insert(length, sbArg);
         } else {
             sbMethod.insert(length, sbArg + ", ");
@@ -68,7 +69,7 @@ public class Method {
         if (pos == -1) {
             throw new Exception ("ArgumentNotInMethod");
         } else {
-            if (method.length() - 6 - argLength == getLengthToArgs()) {
+            if (method.length() - sumOtherChar - argLength == getLengthToArgs()) {
                 method.delete(pos, pos + argLength);
             }
             else {

@@ -7,6 +7,7 @@ public class Main {
     }
 
     public static void Test() throws Exception {
+        Class c2 = new Class("", "class2");
         Class cl = new Class();
         cl.setAccessModifier("public");
         cl.setName("class1");
@@ -22,12 +23,12 @@ public class Main {
         method.addArgument(argument3);
         method.deleteArgument(argument2);
         cl.addMethod(method);
-        Data data1 = new Data("private", "char", "ch1", "'x'");
-        Data data2 = new Data("private", "char", "ch2");
-        cl.addData(data1);
-        cl.addData(data2);
-        cl.addData(data2);
-        cl.deleteData(data2);
+        Field field1 = new Field("private", "char", "ch1", "'x'");
+        Field field2 = new Field("private", "char", "ch2");
+        cl.addData(field1);
+        cl.addData(field2);
+        cl.addData(field2);
+        cl.deleteData(field2);
         System.out.println(cl.getStringBuffer());
     }
 }
