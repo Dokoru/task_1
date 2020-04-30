@@ -18,6 +18,7 @@ public class Main {
         Argument a2 = new Argument("int", "a2");
         m1.add(a1);
         m1.add(a2);
+        m1.remove(a2);
         m2.add(a1);
         m2.add(a2);
         c.add(m1);

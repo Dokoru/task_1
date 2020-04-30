@@ -11,7 +11,7 @@ public class Class {
 
     public Class(String accessModifier, String name) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
@@ -38,7 +38,7 @@ public class Class {
 
     public void setAccessModifier(String accessModifier) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }

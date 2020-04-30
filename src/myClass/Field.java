@@ -5,7 +5,7 @@ public class Field {
 
     public Field(String accessModifier, String fieldType, String name, String value) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
@@ -17,7 +17,7 @@ public class Field {
 
     public Field(String accessModifier, String fieldType, String name) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
@@ -36,7 +36,7 @@ public class Field {
 
     public void setAccessModifier(String accessModifier) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }

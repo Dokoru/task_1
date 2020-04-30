@@ -9,7 +9,7 @@ public class Method {
 
     public Method(String accessModifier, String returnFieldType, String name) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
@@ -30,7 +30,7 @@ public class Method {
 
     public void setAccessModifier(String accessModifier) throws Exception {
         try {
-            AccessModifier.valueOf(accessModifier);
+            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
         } catch (IllegalArgumentException e) {
             throw new Exception("WrongAccessModifier");
         }
