@@ -68,7 +68,7 @@ public class Method {
     public String toString() {
         String string = accessModifier + ' ' + returnFieldType + ' ' + name + " (";
         for (Integer key : argumentMap.keySet()) {
-            string = string + argumentMap.get(key).toStringBuffer() + ", ";
+            string = string + argumentMap.get(key).toString() + ", ";
         }
         if (numbOfArg > 1) {
             StringBuffer sb = new StringBuffer(string);

@@ -29,8 +29,8 @@ public class Argument {
         return name;
     }
 
-    protected StringBuffer toStringBuffer() {
-        StringBuffer stringBuffer = new StringBuffer(fieldType).append(' ').append(name);
-        return stringBuffer;
+    public String toString() {
+        String string = fieldType + ' ' + name;
+        return string;
     }
 }

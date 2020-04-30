@@ -3,7 +3,7 @@ package myClass;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Test4();
+        Test1();
     }
 
     public static void Test1() throws Exception {
