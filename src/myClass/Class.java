@@ -56,7 +56,7 @@ public class Class {
 
     protected void add(Field field) throws Exception {
         if (field.getFieldType() == null || field.getName() == null) {
-            throw new Exception("NotCorrectMethod");
+            throw new Exception("NotCorrectField");
         }
         numbOfFields++;
         fieldMap.put(numbOfFields, field);
