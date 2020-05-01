@@ -52,7 +52,7 @@ public class Method {
 
     protected void add(Argument argument) throws Exception {
         if (argument.getFieldType() == null || argument.getName() == null) {
-            throw new Exception("NotCorrectMethod");
+            throw new Exception("NotCorrectArgument");
         }
         numbOfArg++;
         argumentMap.put(numbOfArg, argument);
