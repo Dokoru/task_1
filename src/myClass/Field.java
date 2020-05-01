@@ -1,13 +1,12 @@
 package myClass;
 
 public class Field {
-    private String accessModifier, fieldType, name, value;
+    private String fieldType, name, value;
+    private AccessModifier accessModifier;
 
-    public Field(String accessModifier, String fieldType, String name, String value) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public Field(AccessModifier accessModifier, String fieldType, String name, String value) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.accessModifier = accessModifier;
         this.fieldType = fieldType;
@@ -15,11 +14,9 @@ public class Field {
         this.value = value;
     }
 
-    public Field(String accessModifier, String fieldType, String name) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public Field(AccessModifier accessModifier, String fieldType, String name) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.accessModifier = accessModifier;
         this.fieldType = fieldType;
@@ -34,11 +31,9 @@ public class Field {
         this.value = null;
     }
 
-    public void setAccessModifier(String accessModifier) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public void setAccessModifier(AccessModifier accessModifier) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.accessModifier = accessModifier;
     }
@@ -66,9 +61,9 @@ public class Field {
     public String toString() {
         String string;
         if (value == null || value.length() == 0) {
-            string = accessModifier + ' ' + fieldType + ' ' + name + ";";
+            string = accessModifier.toString() + ' ' + fieldType + ' ' + name + ";";
         } else {
-            string = accessModifier + ' ' + fieldType + ' ' + name + " = " + value + ";";
+            string = accessModifier.toString() + ' ' + fieldType + ' ' + name + " = " + value + ";";
         }
         return string;
     }

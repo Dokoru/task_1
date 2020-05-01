@@ -3,17 +3,16 @@ package myClass;
 import java.util.HashMap;
 
 public class Class {
-    private String accessModifier, name;
+    private String name;
+    private AccessModifier accessModifier;
     private HashMap<Integer, Method> methodMap;
     private HashMap<Integer, Field> fieldMap;
     private int numbOfMethods;
     private int numbOfFields;
 
-    public Class(String accessModifier, String name) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public Class(AccessModifier accessModifier, String name) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.name = name;
         this.accessModifier = accessModifier;
@@ -36,11 +35,9 @@ public class Class {
         name = newName;
     }
 
-    public void setAccessModifier(String accessModifier) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public void setAccessModifier(AccessModifier accessModifier) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.accessModifier = accessModifier;
     }
@@ -70,7 +67,7 @@ public class Class {
     }
 
     public String toString() {
-        String string = accessModifier + ' ' + "class" + ' ' + name + " { \n";
+        String string = accessModifier.toString() + ' ' + "class" + ' ' + name + " { \n";
         for (Integer key : fieldMap.keySet()) {
             string = string + '\t' + fieldMap.get(key).toString() + '\n';
         }

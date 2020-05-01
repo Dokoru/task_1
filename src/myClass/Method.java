@@ -3,15 +3,14 @@ package myClass;
 import java.util.HashMap;
 
 public class Method {
-    private String accessModifier, returnFieldType, name;
+    private String returnFieldType, name;
+    private AccessModifier accessModifier;
     private HashMap<Integer, Argument> argumentMap;
     private int numbOfArg;
 
-    public Method(String accessModifier, String returnFieldType, String name) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public Method(AccessModifier accessModifier, String returnFieldType, String name) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.accessModifier = accessModifier;
         this.returnFieldType = returnFieldType;
@@ -28,11 +27,9 @@ public class Method {
         this.numbOfArg = 0;
     }
 
-    public void setAccessModifier(String accessModifier) throws Exception {
-        try {
-            AccessModifier.valueOf(AccessModifier.getEnumNameForValue(accessModifier));
-        } catch (IllegalArgumentException e) {
-            throw new Exception("WrongAccessModifier");
+    public void setAccessModifier(AccessModifier accessModifier) {
+        if (accessModifier == null) {
+            accessModifier = AccessModifier.PACKAGE_PRIVATE;
         }
         this.accessModifier = accessModifier;
     }
@@ -66,7 +63,7 @@ public class Method {
     }
 
     public String toString() {
-        String string = accessModifier + ' ' + returnFieldType + ' ' + name + " (";
+        String string = accessModifier.toString() + ' ' + returnFieldType + ' ' + name + " (";
         for (Integer key : argumentMap.keySet()) {
             string = string + argumentMap.get(key).toString() + ", ";
         }

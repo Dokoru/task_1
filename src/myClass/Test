@@ -1,49 +1,53 @@
 1)      Class c = new Class();
         c.setName("class");
-        c.setAccessModifier("public");
-        Method m1 = new Method("public", "void", "method1");
-        Method m2 = new Method("public", "void", "method2");
+        c.setAccessModifier(AccessModifier.PRIVATE);
+        Field f1 = new Field(AccessModifier.PUBLIC, "int", "f1", "1");
+        Field f2 = new Field(AccessModifier.PROTECTED, "int", "f2");
+        Method m1 = new Method(AccessModifier.PRIVATE, "void", "method1");
+        Method m2 = new Method(AccessModifier.PACKAGE_PRIVATE, "void", "method2");
         Argument a1 = new Argument("int", "a1");
         Argument a2 = new Argument("int", "a2");
-        m1.addArgumentInMap(a1);
-        m1.addArgumentInMap(a2);
-        m2.addArgumentInMap(a1);
-        m2.addArgumentInMap(a2);
+        m1.add(a1);
+        m1.add(a2);
+        m1.remove(a2);
+        m2.add(a1);
+        m2.add(a2);
         c.add(m1);
         c.add(m2);
         c.add(f1);
         c.add(f2);
         System.out.println(c.toString());
-        c.setAccessModifier("private");
+        c.setAccessModifier(AccessModifier.PROTECTED);
         c.remove(f2);
         c.remove(m1);
         System.out.println(c.toString());
 
-public class class {
-	public int f1 = 1;
-	public int f2;
-	public void method1 (int a1, int a2) {
-	}
-	public void method2 (int a1, int a2) {
-	}
-}
 private class class {
 	public int f1 = 1;
-	public void method2 (int a1, int a2) {
+	protected int f2;
+	private void method1 (int a1) {
+	}
+	 void method2 (int a1, int a2) {
+	}
+}
+protected class class {
+	public int f1 = 1;
+	 void method2 (int a1, int a2) {
 	}
 }
 
-2)        Class c = new Class("public", "class");
-          Method m = new Method();
-          c.add(m);
+2)      Class c = new Class(AccessModifier.PRIVATE, "class");
+        Method m = new Method();
+        c.add(m);
+    }
 
 Exception in thread "main" java.lang.Exception: NotCorrectMethod
 
-3)      Class c = new Class("", "class");
-        Field f1 = new Field("private", "int", "f1", "1");
-        Field f2 = new Field("protected", "int", "f2");
-        Method m1 = new Method("public", "void", "method1");
-        Method m2 = new Method("", "void", "method2");
+3)      Class c = new Class(AccessModifier.PACKAGE_PRIVATE, "class");
+        Field f1 = new Field(AccessModifier.PUBLIC, "int", "f1", "1");
+        Field f2 = new Field(AccessModifier.PRIVATE, "int", "f2");
+        Method m1 = new Method(AccessModifier.PROTECTED, "void", "method1");
+        Method m2 = new Method(AccessModifier.PACKAGE_PRIVATE, "void", "method2");
         Argument a1 = new Argument("int", "a1");
         Argument a2 = new Argument("int", "a2");
         c.add(f1);
@@ -57,15 +61,17 @@ Exception in thread "main" java.lang.Exception: NotCorrectMethod
         System.out.println(c.toString());
 
  class class {
-	private int f1 = 1;
-	protected int f2;
-	public void method1 (int a1, int a2) {
+	public int f1 = 1;
+	private int f2;
+	protected void method1 (int a1, int a2) {
 	}
 	 void method2 () {
 	}
 }
 
-4)      Class c = new Class();
-        c.setAccessModifier("aaa");
+4)      Class c = new Class(AccessModifier.PACKAGE_PRIVATE, "class");
+        c.setAccessModifier(null);
+        System.out.println(c.toString());
 
-Exception in thread "main" java.lang.Exception: WrongAccessModifier
+ class class {
+}
