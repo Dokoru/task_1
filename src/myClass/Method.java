@@ -63,16 +63,14 @@ public class Method {
     }
 
     public String toString() {
-        String string = accessModifier.toString() + ' ' + returnFieldType + ' ' + name + " (";
+        StringBuffer stringBuffer = new StringBuffer(String.format("%s %s %s (", accessModifier.toString(), returnFieldType, name));
         for (Integer key : argumentMap.keySet()) {
-            string = string + argumentMap.get(key).toString() + ", ";
+            stringBuffer.append(String.format("%s, ",argumentMap.get(key).toString()));
         }
         if (numbOfArg > 1) {
-            StringBuffer sb = new StringBuffer(string);
-            sb.delete(sb.length() - 2, sb.length());
-            string = sb.toString();
+            stringBuffer.delete(stringBuffer.length() - 2, stringBuffer.length());
         }
-        string = string + ')' + " {\n\t}";
+        String string = stringBuffer.append(") {\n\t}").toString();
         return string;
     }
 }

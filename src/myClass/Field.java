@@ -61,9 +61,9 @@ public class Field {
     public String toString() {
         String string;
         if (value == null || value.length() == 0) {
-            string = accessModifier.toString() + ' ' + fieldType + ' ' + name + ";";
+            string = String.format("%s %s %s;", accessModifier.toString(), fieldType, name);
         } else {
-            string = accessModifier.toString() + ' ' + fieldType + ' ' + name + " = " + value + ";";
+            string = String.format("%s %s %s = %s;", accessModifier.toString(), fieldType, name, value);
         }
         return string;
     }

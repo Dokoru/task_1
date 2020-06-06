@@ -30,7 +30,7 @@ public class Argument {
     }
 
     public String toString() {
-        String string = fieldType + ' ' + name;
+        String string = String.format("%s %s", fieldType, name);
         return string;
     }
 }
