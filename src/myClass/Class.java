@@ -67,12 +67,12 @@ public class Class {
     }
 
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer(String.format("%s class %s { \n", accessModifier.toString(), name));
+        StringBuffer stringBuffer = new StringBuffer(String.format("%s class %s {\n", accessModifier.toString(), name));
         for (Integer key : fieldMap.keySet()) {
-            stringBuffer.append(String.format("\t %s \n", fieldMap.get(key).toString()));
+            stringBuffer.append(String.format("\t%s\n", fieldMap.get(key).toString()));
         }
         for (Integer key : methodMap.keySet()) {
-            stringBuffer.append(String.format("\t %s \n", methodMap.get(key).toString()));
+            stringBuffer.append(String.format("\t%s\n", methodMap.get(key).toString()));
         }
         String string = stringBuffer.append('}').toString();
         return string;

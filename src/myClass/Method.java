@@ -63,7 +63,13 @@ public class Method {
     }
 
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer(String.format("%s %s %s (", accessModifier.toString(), returnFieldType, name));
+        StringBuffer stringBuffer;
+        if (accessModifier == AccessModifier.PACKAGE_PRIVATE) {
+            stringBuffer = new StringBuffer(String.format("%s %s (", returnFieldType, name));
+        }
+        else {
+            stringBuffer = new StringBuffer(String.format("%s %s %s (", accessModifier.toString(), returnFieldType, name));
+        }
         for (Integer key : argumentMap.keySet()) {
             stringBuffer.append(String.format("%s, ",argumentMap.get(key).toString()));
         }

@@ -27,12 +27,12 @@ private class class {
 	protected int f2;
 	private void method1 (int a1) {
 	}
-	 void method2 (int a1, int a2) {
+	void method2 (int a1, int a2) {
 	}
 }
 protected class class {
 	public int f1 = 1;
-	 void method2 (int a1, int a2) {
+	void method2 (int a1, int a2) {
 	}
 }
 
